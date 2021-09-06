@@ -1,19 +1,16 @@
-const alice = [12, 30, 1];
-const bob = [1, 30, 9];
+const ar = [1000000001, 1000000002, 1000000003, 1000000004, 1000000005];
 
-const checkSecore = (a, b) => {
-    const result = [0, 0]; // alice, bob
-    for (let i = 0; i < 3; i++) {
-        if (a[i] > b[i]) {
-            result[0] += 1;
-        } else if(a[i] < b[i]) {
-            result[1] += 1;
-        } else {
-            result[0,1] = result[0,1];
-        }
-    }
+function aVeryBigSum(ar) {
+    // Write your code here
+    let bigAr = [];
+    ar.forEach((nilai, index) => {
+        bigAr[index] = BigInt(nilai);
+    });
 
-    return result;
-};
+    return bigAr.reduce((total, num) => {
+        return  BigInt(total) + num;
+    }, 0);
+}
 
-console.log(checkSecore(alice, bob));
+
+console.log(aVeryBigSum(ar));
