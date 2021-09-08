@@ -1,2 +1,2 @@
 # Deskripsi
-challange di hackerrank bagian algoritma
+challange di hackerrank bagian data structur
