@@ -1,40 +1,54 @@
-const arr = [[1,2,3], [4,5,6], [9,8,9]];
+// const arrayNumber = [-1, -4, 0, 1, 2, 3];
+const arrayNumber = [-4, 3, -9, 0, 4, 1];
+// const arrayNumber = [1, 2, 3, -1, -2, -3, 0, 0];
 
-function diagonalDifference(arr) {
-    // Write your code here
-    let diagonal_1 = [],
-        diagonal_2 = [],
-        total = 0,
-        total_1 = 0,
-        total_2 = 0,
-        arrIndex = 0,
-        panjangArr = arr.length - 1;
+const ActionType = {
+    minus: "minus",
+    zero: "zero",
+    plus: "plus"
+};
 
-    for(arrIndex in arr) {
-        diagonal_1[arrIndex] = arr[arrIndex][arrIndex];
+const cekFilter = (nums, type) => {
+    if (type === ActionType.minus) {
+        return nums.filter(ar => {
+            if (ar < 0) {
+                return ar;
+            }
+
+        });
     }
 
-    for(arrIndex in arr) {
-        diagonal_2[arrIndex] = arr[arrIndex][panjangArr - arrIndex];
+    if (type === ActionType.zero) {
+        return nums.filter(ar => {
+            if (ar === 0) {
+                return ar + 1;
+            }
+        });
     }
 
-    total_1 = diagonal_1.reduce((total, num) => {
-        return total + num;
-    }, 0);
+    if (type === ActionType.plus) {
+        return nums.filter(ar => {
+            if (ar > 0) {
+                return ar;
+            }
+        });
+    }
+};
 
-    total_2 = diagonal_2.reduce((total, num) => {
-        return total + num;
-    }, 0);
+function plusMinus(arr) {
+    let nilaiArray = [];
 
-    // console.log(diagonal_1);
-    // console.log(diagonal_2);
-    //
-    // console.log(total_1);
-    // console.log(total_2);
+    const plus = cekFilter(arr, ActionType.plus);
+    const minus = cekFilter(arr, ActionType.minus);
+    const zero = cekFilter(arr, ActionType.zero);
 
-    total = Math.abs(total_1 - total_2);
+    nilaiArray[0] = (plus.length / arr.length).toFixed(6);
+    nilaiArray[1] = (minus.length / arr.length).toFixed(6);
+    nilaiArray[2] = (zero.length / arr.length).toFixed(6);
 
-    return total;
+    nilaiArray.forEach(ar => {
+        console.log(ar);
+    })
 }
 
-console.log(diagonalDifference(arr));
+plusMinus(arrayNumber);
